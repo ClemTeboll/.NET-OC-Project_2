@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace P2FixAnAppDotNetCode.Models
@@ -28,6 +29,16 @@ namespace P2FixAnAppDotNetCode.Models
         public void AddItem(Product product, int quantity)
         {
             // TODO implement the method
+            List<CartLine> cartLines = GetCartLineList();
+
+            // Check if product is already added
+
+            // Create new product and add it to cart
+            CartLine newProduct = new CartLine(
+                //cartLines.Count + 1, 
+                product, quantity);
+
+            cartLines.Add(newProduct); // doesn't work
         }
 
         /// <summary>
@@ -83,6 +94,17 @@ namespace P2FixAnAppDotNetCode.Models
 
     public class CartLine
     {
+        //private int v;
+
+        public CartLine(
+            //int v, 
+            Product product, int quantity)
+        {
+            //this.v = v;
+            Product = product;
+            Quantity = quantity;
+        }
+
         public int OrderLineId { get; set; }
         public Product Product { get; set; }
         public int Quantity { get; set; }
