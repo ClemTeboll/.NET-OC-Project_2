@@ -9,10 +9,12 @@ namespace P2FixAnAppDotNetCode.Models
     /// </summary>
     public class Cart : ICart
     {
+        List<CartLine> cartLineList = new List<CartLine>();
+
         /// <summary>
         /// Read-only property for dispaly only
         /// </summary>
-        public IEnumerable<CartLine> Lines => GetCartLineList();
+        public List<CartLine> Lines => GetCartLineList();
 
         /// <summary>
         /// Return the actual cartline list
@@ -20,7 +22,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// <returns></returns>
         private List<CartLine> GetCartLineList()
         {
-            return new List<CartLine>();
+            return cartLineList;
         }
 
         /// <summary>
@@ -29,16 +31,38 @@ namespace P2FixAnAppDotNetCode.Models
         public void AddItem(Product product, int quantity)
         {
             // TODO implement the method
+
             List<CartLine> cartLines = GetCartLineList();
+            Console.WriteLine(cartLines);
 
-            // Check if product is already added
-
-            // Create new product and add it to cart
             CartLine newProduct = new CartLine(
-                //cartLines.Count + 1, 
-                product, quantity);
+                                            //cartLines.Count + 1, 
+                                            product, quantity);
 
-            cartLines.Add(newProduct); // doesn't work
+            Boolean isProductHasToBeHad = true;
+
+            if (cartLineList.Count == 0)
+            {
+                isProductHasToBeHad = false;
+                cartLineList.Add(newProduct);
+            }
+            else
+            {
+                foreach (CartLine item in cartLines)
+                {
+                    if (item.Product.Id == product.Id)
+                    {
+                        isProductHasToBeHad = false;
+                        item.Quantity += quantity;
+                        break;
+                    }
+                }
+            }
+
+            if (isProductHasToBeHad)
+            {
+                cartLineList.Add(newProduct);
+            }
         }
 
         /// <summary>
