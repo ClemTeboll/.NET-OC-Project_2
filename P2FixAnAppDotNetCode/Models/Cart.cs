@@ -32,34 +32,33 @@ namespace P2FixAnAppDotNetCode.Models
         {
             // TODO implement the method
 
-            List<CartLine> cartLines = GetCartLineList();
-            Console.WriteLine(cartLines);
+            //List<CartLine> cartLines = GetCartLineList();
 
             CartLine newProduct = new CartLine(
                                             //cartLines.Count + 1, 
                                             product, quantity);
 
-            Boolean isProductHasToBeHad = true;
+            bool isProductHasToBeAdd = true;
 
             if (cartLineList.Count == 0)
             {
-                isProductHasToBeHad = false;
+                isProductHasToBeAdd = false;
                 cartLineList.Add(newProduct);
             }
             else
             {
-                foreach (CartLine item in cartLines)
+                foreach (CartLine item in cartLineList)
                 {
                     if (item.Product.Id == product.Id)
                     {
-                        isProductHasToBeHad = false;
+                        isProductHasToBeAdd = false;
                         item.Quantity += quantity;
                         break;
                     }
                 }
             }
 
-            if (isProductHasToBeHad)
+            if (isProductHasToBeAdd)
             {
                 cartLineList.Add(newProduct);
             }
@@ -77,7 +76,18 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetTotalValue()
         {
             // TODO implement the method
-            return 0.0;
+            List<double> productAmountList = new List<double>();
+
+            foreach (CartLine cartline in cartLineList)
+            {
+                double quantity = Convert.ToDouble(cartline.Quantity);
+                double price = cartline.Product.Price;
+                double productAmount = quantity *= price;
+
+                productAmountList.Add(productAmount);
+            }
+
+            return productAmountList.Sum();
         }
 
         /// <summary>
@@ -85,7 +95,6 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public double GetAverageValue()
         {
-            // TODO implement the method
             return 0.0;
         }
 
