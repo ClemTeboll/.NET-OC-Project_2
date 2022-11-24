@@ -95,7 +95,9 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public double GetAverageValue()
         {
-            return 0.0;
+            // TODO implement the method
+            double totalValue = GetTotalValue();
+            return totalValue / cartLineList.Count;
         }
 
         /// <summary>
@@ -104,7 +106,8 @@ namespace P2FixAnAppDotNetCode.Models
         public Product FindProductInCartLines(int productId)
         {
             // TODO implement the method
-            return null;
+            CartLine specificCartLine = GetCartLineList().Find(cl => cl.Product.Id == productId);
+            return specificCartLine.Product;
         }
 
         /// <summary>
