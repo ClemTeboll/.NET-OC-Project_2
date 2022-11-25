@@ -20,7 +20,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// Return the actual cartline list
         /// </summary>
         /// <returns></returns>
-        private List<CartLine> GetCartLineList()
+        public List<CartLine> GetCartLineList()
         {
             return cartLineList;
         }
@@ -96,16 +96,8 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetAverageValue()
         {
             // TODO implement the method
-
-            // Il faut calculer la total de la quantité, puis diviser la somme totale par le résultat du total quantité
             List<double> quantityAmountList = new List<double>();
-
             double quantitySum = Convert.ToDouble(cartLineList.Sum(l => l.Quantity));
-
-            //foreach (CartLine cartline in cartLineList)
-            //{
-            //    quantityAmountList.Add(Convert.ToDouble(cartline.Quantity));
-            //}
 
             return GetTotalValue() / quantitySum;
         }
