@@ -32,11 +32,7 @@ namespace P2FixAnAppDotNetCode.Models
         {
             // TODO implement the method
 
-            //List<CartLine> cartLines = GetCartLineList();
-
-            CartLine newProduct = new CartLine(
-                                            //cartLines.Count + 1, 
-                                            product, quantity);
+            CartLine newProduct = new CartLine(product, quantity);
 
             bool isProductHasToBeAdd = true;
 
@@ -132,13 +128,9 @@ namespace P2FixAnAppDotNetCode.Models
 
     public class CartLine
     {
-        //private int v;
-
         public CartLine(
-            //int v, 
             Product product, int quantity)
         {
-            //this.v = v;
             Product = product;
             Quantity = quantity;
         }

@@ -51,8 +51,6 @@ namespace P2FixAnAppDotNetCode.Models.Services
             foreach (CartLine line in cartLineList)
             {
                 _productRepository.UpdateProductStocks(line.Product.Id, line.Quantity);
-                Console.Write(line.Product.Stock);
-
             }
         }
     }
