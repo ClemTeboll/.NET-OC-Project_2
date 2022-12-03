@@ -26,19 +26,22 @@ namespace P2FixAnAppDotNetCode.Models.Services
             // TODO complete the code 
             // Default language is "en", french is "fr" and spanish is "es".
 
-            if (language == "en")
+            switch (language)
             {
-                culture = "en";
-            } 
-            else if (language == "es")
-            {
-                culture = "es";
+                case ("English"):
+                    culture = "en";
+                    break;
+                case ("French"):
+                    culture = "fr";
+                    break;
+                case ("Spanish"):
+                    culture = "es";
+                    break;
+                default:
+                    culture = "en";
+                    break;
             }
-            else
-            {
-                culture = "fr";
-            }
-            
+
             return culture;
         }
 
