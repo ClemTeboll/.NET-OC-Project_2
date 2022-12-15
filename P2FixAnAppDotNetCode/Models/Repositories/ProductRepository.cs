@@ -21,7 +21,6 @@ namespace P2FixAnAppDotNetCode.Models.Repositories
             {
                 _products = GetAllProducts();
             }
-
         }
 
         /// <summary>

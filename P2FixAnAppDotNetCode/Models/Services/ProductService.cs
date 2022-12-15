@@ -24,8 +24,6 @@ namespace P2FixAnAppDotNetCode.Models.Services
         /// </summary>
         public List<Product> GetAllProducts()
         {
-            // TODO change the return type from array to List<T> and propagate the change
-            // thoughout the application
             return _productRepository.GetAllProducts();
         }
 
@@ -34,7 +32,6 @@ namespace P2FixAnAppDotNetCode.Models.Services
         /// </summary>
         public Product GetProductById(int id)
         {
-            // TODO implement the method
             return _productRepository.GetProductById(id);
         }
 
@@ -43,9 +40,6 @@ namespace P2FixAnAppDotNetCode.Models.Services
         /// </summary>
         public void UpdateProductQuantities(Cart cart)
         {
-            // TODO implement the method
-            // update product inventory by using _productRepository.UpdateProductStocks() method.
-
             List<CartLine> cartLineList = cart.GetCartLineList();
 
             foreach (CartLine line in cartLineList)

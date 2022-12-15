@@ -30,33 +30,17 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>//
         public void AddItem(Product product, int quantity)
         {
-            // TODO implement the method
-
             CartLine newProduct = new CartLine(product, quantity);
 
-            bool isProductHasToBeAdd = true;
+            CartLine line = cartLineList.FirstOrDefault(p => p.Product.Id == product.Id);
 
-            if (cartLineList.Count == 0)
+            if (line == null)
             {
-                isProductHasToBeAdd = false;
                 cartLineList.Add(newProduct);
             }
             else
             {
-                foreach (CartLine item in cartLineList)
-                {
-                    if (item.Product.Id == product.Id)
-                    {
-                        isProductHasToBeAdd = false;
-                        item.Quantity += quantity;
-                        break;
-                    }
-                }
-            }
-
-            if (isProductHasToBeAdd)
-            {
-                cartLineList.Add(newProduct);
+                line.Quantity += quantity;
             }
         }
 
@@ -71,7 +55,6 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public double GetTotalValue()
         {
-            // TODO implement the method
             List<double> productAmountList = new List<double>();
 
             foreach (CartLine cartline in cartLineList)
@@ -91,8 +74,6 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public double GetAverageValue()
         {
-            // TODO implement the method
-            List<double> quantityAmountList = new List<double>();
             double quantitySum = Convert.ToDouble(cartLineList.Sum(l => l.Quantity));
 
             return GetTotalValue() / quantitySum;
@@ -103,7 +84,6 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public Product FindProductInCartLines(int productId)
         {
-            // TODO implement the method
             CartLine specificCartLine = GetCartLineList().Find(cl => cl.Product.Id == productId);
             return specificCartLine.Product;
         }
